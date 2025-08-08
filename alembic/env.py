@@ -9,11 +9,11 @@ from alembic import context
 import sys, os
 
 # importando módulos fora do diretório atual
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))) # 
-
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))) 
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
+
 config = context.config
 
 # Interpret the config file for Python logging.

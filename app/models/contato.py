@@ -14,13 +14,13 @@ class Contato(Base):
 
     id = Column("id", Integer, primary_key=True, autoincrement=True)
     nome = Column("nome", String, nullable=False)
-    email = Column("email", String, nullable=False, unique=True)
     telefone = Column("telefone", String, nullable=False)
+    email = Column("email", String, nullable=False, unique=True)
     tags = Column("tags", JSON, nullable=True)
 
-    def __init__(self, nome, email, telefone, tags):
+    def __init__(self, nome, telefone, email, tags):
         self.nome = nome
-        self.email = email
         self.telefone = telefone
+        self.email = email
         self.tags = tags
            
