@@ -19,10 +19,10 @@ async def criar_contato(nome: str,telefone: str, email: str, tags: str, session 
     contato = session.query(Contato).filter(or_(Contato.nome==nome, Contato.telefone==telefone)).first()
     if contato:
         # já existe um contato com este nome ou telefone
-        return HTTPException(status_code=400, detail="Nome ou telefone já cadastrado")
+        raise HTTPException(status_code=400, detail="Nome ou telefone já cadastrado")
     else:
         # não existe e cria um novo
         novo_contato = Contato(nome, telefone, email, tags)
         session.add(novo_contato)
         session.commit() # salva todas alterações no banco de dados
-        return {"mensagem": "Contato criado com sucesso!"}
+        return {"mensagem": f"Contato ({telefone}) criado com sucesso!"}
