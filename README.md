@@ -23,8 +23,6 @@ Embora o desafio não tenha solicitado explicitamente o uso de uma ferramenta de
 - Garantir que alterações futuras possam ser aplicadas sem perder dados ou precisar recriar o banco do zero.
 - Permite aplicar, reverter e versionar mudanças no banco de forma segura e organizada, melhorando a qualidade e sustentabilidade do projeto.
 
-
-
 # Passo a Passo para rodar o Projeto
 
 # 1. Criar o ambiente virtual: 
