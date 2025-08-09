@@ -7,6 +7,7 @@ def pegar_sessao():
         # Abrindo sessão conectada ao banco (engine)
         Session= sessionmaker(bind=db)
         session = Session()
+        yield session
         
         # independente do erro fecha
     finally: 
