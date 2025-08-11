@@ -1,28 +1,54 @@
-from fastapi import APIRouter, HTTPException, Depends
-from app.models.contato import Contato
-from app.dependencies import pegar_sessao
-from sqlalchemy import or_
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from typing import List
 
-routes = APIRouter(prefix="/contatos", tags=["contatos"])
+from app.database.database import pegar_db
+from app.database.schema import ContatoCreate, ContatoResponse, ContatoMensagemResponse
+from app.controllers.contato_controller import (
+    create,
+    find_all,
+    find_id,
+    update,
+    delete
+)
 
-@routes.get("/")
-async def contatos():
+router = APIRouter(prefix="/contatos", tags=["Contatos"])
+
+@router.post("/", response_model=ContatoMensagemResponse, summary="Criar novo contato")
+def criar_contato_route(contato: ContatoCreate, db: Session = Depends(pegar_db)):
     """
-    Rota padrão
+    Rota para criar um contato. Retorna mensagem + contato criado.
     """
-    return {"mensagem": "Você acessou a rota de contatos"}
+    return create(db, contato)
 
-@routes.post("/contato")
-async def criar_contato(nome: str,telefone: str, email: str, tags: str, session = Depends(pegar_sessao)):
-    
-    # Verifica se já existe um contato com o mesmo nome ou telefone
-    contato = session.query(Contato).filter(or_(Contato.nome==nome, Contato.telefone==telefone)).first()
-    if contato:
-        # já existe um contato com este nome ou telefone
-        raise HTTPException(status_code=400, detail="Nome ou telefone já cadastrado")
-    else:
-        # não existe e cria um novo
-        novo_contato = Contato(nome, telefone, email, tags)
-        session.add(novo_contato)
-        session.commit() # salva todas alterações no banco de dados
-        return {"mensagem": f"Contato ({telefone}) criado com sucesso!"}
+
+@router.get("/", response_model=List[ContatoResponse], summary="Listar todos os contatos")
+def listar_contatos_route(db: Session = Depends(pegar_db)):
+    """
+    Rota para listar todos os contatos.
+    """
+    return find_all(db)
+
+
+@router.get("/{contato_id}", response_model=ContatoResponse, summary="Buscar contato por ID")
+def buscar_contato_route(contato_id: int, db: Session = Depends(pegar_db)):
+    """
+    Rota para buscar um contato por ID.
+    """
+    return find_id(db, contato_id)
+
+
+@router.put("/{contato_id}", response_model=ContatoMensagemResponse, summary="Atualizar contato")
+def atualizar_contato_route(contato_id: int, contato: ContatoCreate, db: Session = Depends(pegar_db)):
+    """
+    Rota para atualizar um contato e retornar mensagem + contato atualizado.
+    """
+    return update(db, contato_id, contato)
+
+
+@router.delete("/{contato_id}", summary="Excluir contato")
+def excluir_contato_route(contato_id: int, db: Session = Depends(pegar_db)):
+    """
+    Rota para excluir contato (retorna mensagem de sucesso).
+    """
+    return delete(db, contato_id)

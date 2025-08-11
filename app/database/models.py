@@ -1,12 +1,6 @@
-from sqlalchemy import create_engine, Column, String, Integer
-from sqlalchemy.orm import declarative_base
+from sqlalchemy import Column, String, Integer
 from sqlalchemy.types import JSON
-
-# conexão do banco de dados
-db= create_engine("sqlite:///banco.db")
-
-# base do banco de dados
-Base = declarative_base()
+from app.database.database import Base
 
 # classe/tebela do banco de dados
 class Contato(Base):
