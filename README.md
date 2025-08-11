@@ -34,8 +34,8 @@ python -m pip install --upgrade pip
 # 4. Instalar as dependências do projeto:
 pip install -r requirements.txt
 
-# 5. Rodar a migration para criar o banco e as tabelas:
-alembic upgrade head
+# 5. Instalar extensão no VScode para visualizar tabelas no banco:
+SQLite Viewer
 
 # 6. Rodar a aplicação:
 uvicorn app.main:app --reload

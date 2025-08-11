@@ -1,5 +1,4 @@
 from sqlalchemy import Column, String, Integer
-from sqlalchemy.types import JSON
 from app.database.database import Base
 
 # classe/tebela do banco de dados
@@ -10,7 +9,7 @@ class Contato(Base):
     nome = Column("nome", String, nullable=False)
     telefone = Column("telefone", String, nullable=False)
     email = Column("email", String, nullable=False)
-    tags = Column("tags", JSON, nullable=True)
+    tags = Column("tags", String, nullable=True)
 
     def __init__(self, nome, telefone, email, tags):
         self.nome = nome

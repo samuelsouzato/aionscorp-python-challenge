@@ -8,7 +8,7 @@ class ContatoBase(BaseModel):
     nome: str
     telefone: str
     email: str
-    tags:str
+    tags: Optional[str]
 
 class ContatoCreate(ContatoBase):
     """
