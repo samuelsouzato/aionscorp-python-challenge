@@ -15,13 +15,6 @@ A API oferece suporte a paginação e filtragem por tags na listagem de contatos
 - SQLite
 - Pydantic (validação)
 - Pytest (testes)
-- Alembic (para migrações de banco)
-
-Embora o desafio não tenha solicitado explicitamente o uso de uma ferramenta de migração, optei por incluir o Alembic para:
-
-- Facilitar a manutenção e evolução do esquema do banco.
-- Garantir que alterações futuras possam ser aplicadas sem perder dados ou precisar recriar o banco do zero.
-- Permite aplicar, reverter e versionar mudanças no banco de forma segura e organizada, melhorando a qualidade e sustentabilidade do projeto.
 
 # Passo a Passo para rodar o Projeto
 
