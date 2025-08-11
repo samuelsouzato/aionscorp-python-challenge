@@ -40,6 +40,10 @@ SQLite Viewer
 # 6. Rodar a aplicação:
 uvicorn app.main:app --reload
 
+## Passo a Passo para rodar os testes
+
+# 1.
+
 
 
 
