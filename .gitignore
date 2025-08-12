@@ -1,7 +1,7 @@
 venv/
-
-# Ignore arquivos compilados Python
 __pycache__/
 *.pyc
 banco.db
 .pytest_cache/
+.coverage
+htmlcov/
