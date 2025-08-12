@@ -6,7 +6,6 @@ from app.database.database import pegar_db
 from app.database.schema import ContatoCreate, ContatoResponse, ContatoMensagemResponse
 from app.controllers.contato_controller import (
     create,
-    find_all,
     find_id,
     find_tags,
     update,
